@@ -34,11 +34,16 @@ class DatabaseAccess(object):
                 password='lutwama@2' port='5432'"""
             )
         commands = (
+            """DROP TABLE IF EXISTS users, menu, orders CASCADE """,
+            # """DROP TABLE IF EXISTS menu CASCADE""",
+            # """DROP TABLE IF EXISTS order CASCADE""",
+
             """
-            CREATE TABLE "user" (
+            CREATE TABLE "users" (
                     user_id SERIAL PRIMARY KEY, username VARCHAR(25) NOT NULL,
-                    email VARCHAR(25) UNIQUE NOT NULL, phonenumber INTEGER NOT NULL,
-                    usertype VARCHAR(25) NOT NULL, password VARCHAR(255) NOT NULL
+                    email VARCHAR(50) UNIQUE NOT NULL, phonenumber INTEGER NOT NULL,
+                    usertype BOOLEAN NOT NULL DEFAULT FALSE, password VARCHAR(255) NOT NULL,
+                    is_loggedin BOOLEAN DEFAULT FALSE
                 )
             """,
             """
@@ -48,10 +53,10 @@ class DatabaseAccess(object):
                 )
             """,
             """
-            CREATE TABLE "order" (
+            CREATE TABLE "orders" (
                     order_id SERIAL PRIMARY KEY, user_id INTEGER NOT NULL,
                     item_id INTEGER NOT NULL, date TIMESTAMP NOT NULL,
-                    orderstatus VARCHAR(25) NULL,
+                    orderstatus VARCHAR(25) NOT NULL DEFAULT 'new',
                     FOREIGN KEY (user_id) REFERENCES "user" (user_id)
                     ON UPDATE CASCADE ON DELETE CASCADE,
                     FOREIGN KEY (item_id) REFERENCES "menu" (item_id)
@@ -69,19 +74,6 @@ class DatabaseAccess(object):
         finally:
             if connection is not None:
                connection.close()
-
-    # def insert_user_data(self,username, email, password ):
-    #     connection = psycopg2.connect(
-    #             """dbname='stackoverflow' user='celestemiriams' host='localhost'\
-    #             password='lutwama@2' port='5432'"""
-    #         )
-    #     cursor = connection.cursor()
-    #     """inserting data"""
-    #     user_query = "INSERT INTO user (username, email, password) VALUES\
-    #      ('{}', '{}', '{}');".format(username, email, password)
-    #     cursor.execute(user_query)
-    #     connection.commit()
-    #     connection.close()
 
 db = DatabaseAccess()
 db.create_tables()
