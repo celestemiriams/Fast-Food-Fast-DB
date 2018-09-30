@@ -3,7 +3,7 @@ This module is responsible for database transactions.
 """
 
 import psycopg2
-from database_connection import DatabaseAccess
+from .database_connection import DatabaseAccess
 
 
 class DbTransaction(object):
@@ -13,7 +13,7 @@ class DbTransaction(object):
     """
 
     @staticmethod
-    def save(sql, data):
+    def save(sql):
         """
         This method handles insertion queries to the db
         """
@@ -24,7 +24,7 @@ class DbTransaction(object):
         try:
             
             cur = connection.cursor()
-            cur.execute(sql, data)
+            cur.execute(sql)
             connection.commit()
             cur.close()
         except (Exception, psycopg2.DatabaseError) as error:
