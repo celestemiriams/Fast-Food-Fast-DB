@@ -3,4 +3,7 @@ This is a food delivery service application for a restaurant using a Database
 
 [![Build Status](https://travis-ci.org/celestemiriams/Fast-Food-Fast-DB.svg?branch=develop)](https://travis-ci.org/celestemiriams/Fast-Food-Fast-DB)
 
+[![Coverage Status](https://coveralls.io/repos/github/celestemiriams/Fast-Food-Fast-DB/badge.svg?branch=develop)](https://coveralls.io/github/celestemiriams/Fast-Food-Fast-DB?branch=develop)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/5ebd2e38383ea8d65fc0/maintainability)](https://codeclimate.com/github/celestemiriams/Fast-Food-Fast-DB/maintainability)
+
