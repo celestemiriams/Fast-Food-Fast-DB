@@ -28,7 +28,6 @@ class User(object):
         self.password
         user_sql = "INSERT INTO users (username, email, phonenumber, password) VALUES\
         ('{}', '{}', {}, '{}');".format(self.username, self.email, self.phonenumber, self.password)
-        #print(user_sql)
         DbTransaction.save(user_sql)
 
 
