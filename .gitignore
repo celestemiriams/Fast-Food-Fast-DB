@@ -1,0 +1,8 @@
+# files to be ignored when pushing to git hub
+
+*.pyc
+*pytest_cache
+__pycache__/folders
+*.pytest_cache
+.pytest_cache/v/cache/nodeids
+__pycache__
