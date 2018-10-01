@@ -34,12 +34,12 @@ class DatabaseAccess(object):
                 password='lutwama@2' port='5432'"""
             )
         commands = (
-            """DROP TABLE IF EXISTS users, menu, orders CASCADE """,
+            # """DROP TABLE IF EXISTS users CASCADE """,
             # """DROP TABLE IF EXISTS menu CASCADE""",
-            # """DROP TABLE IF EXISTS order CASCADE""",
+            # """DROP TABLE IF EXISTS orders CASCADE""",
 
             """
-            CREATE TABLE "users" (
+            CREATE TABLE IF NOT EXISTS "users" (
                     user_id SERIAL PRIMARY KEY, username VARCHAR(25) NOT NULL,
                     email VARCHAR(50) UNIQUE NOT NULL, phonenumber INTEGER NOT NULL,
                     usertype BOOLEAN NOT NULL DEFAULT FALSE, password VARCHAR(255) NOT NULL,
@@ -47,17 +47,17 @@ class DatabaseAccess(object):
                 )
             """,
             """
-            CREATE TABLE "menu" (
-                    item_id SERIAL PRIMARY KEY, itemname VARCHAR(50) NOT NULL,
-                    itemcategory VARCHAR(50) NOT NULL, price INTEGER NOT NULL
+            CREATE TABLE IF NOT EXISTS "menu" (
+                    item_id SERIAL PRIMARY KEY, item_category VARCHAR(50) NOT NULL,
+                    item_name VARCHAR(50) NOT NULL, price NUMERIC NOT NULL
                 )
             """,
             """
-            CREATE TABLE "orders" (
+            CREATE TABLE IF NOT EXISTS "orders" (
                     order_id SERIAL PRIMARY KEY, user_id INTEGER NOT NULL,
-                    item_id INTEGER NOT NULL, date TIMESTAMP NOT NULL,
+                    item_id INTEGER NOT NULL, 
                     orderstatus VARCHAR(25) NOT NULL DEFAULT 'new',
-                    FOREIGN KEY (user_id) REFERENCES "user" (user_id)
+                    FOREIGN KEY (user_id) REFERENCES "users" (user_id)
                     ON UPDATE CASCADE ON DELETE CASCADE,
                     FOREIGN KEY (item_id) REFERENCES "menu" (item_id)
                     ON UPDATE CASCADE ON DELETE CASCADE
