@@ -27,7 +27,7 @@ class MenuHandler(object):
         else:
             menu_list = DbTransaction.retrieve_all(sql)
 
-        menu_ = []
+        _menu_ = []
         for menu_ in menu_list:
             menu_dict = {
                 "item_id": menu_[0],
@@ -35,7 +35,8 @@ class MenuHandler(object):
                 "item_name": menu_[2],
                 "price": menu_[3]
             }
-            menu_.append(menu_dict)
+            print(menu_dict)
+            _menu_.append(menu_dict)
         return jsonify({"message": "Available items on our menu",
                         "Menu": menu_})
 
