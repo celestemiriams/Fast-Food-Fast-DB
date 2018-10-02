@@ -68,6 +68,7 @@ class User(object):
             token = jwt.decode(dtoken, "my-food-delivery-service-application")
             return {"user_id": token["user_id"],
                     "state": "Success"}
+              
         except jwt.ExpiredSignatureError:
             return {"error_message": "Signature expired. Please log in again.",
                     "state": "Failure"}
@@ -94,5 +95,6 @@ class User(object):
             """SELECT "is_loggedin" FROM "users" WHERE "user_id" = %s""",
             (user_id, ))
         if is_loggedin[0]:
+
             return True
         return False
