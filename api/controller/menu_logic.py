@@ -38,7 +38,7 @@ class MenuHandler(object):
             print(menu_dict)
             _menu_.append(menu_dict)
         return jsonify({"message": "Available items on our menu",
-                        "Menu": menu_})
+                        "Menu": _menu_})
 
 
     def post_menu_option(self, user_id):
