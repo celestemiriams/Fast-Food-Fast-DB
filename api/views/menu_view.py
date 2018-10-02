@@ -22,13 +22,14 @@ class MenuViews(MethodView):
         if not token:
             return jsonify({"message": "Token is missing"}), 401
 
-        decoded = User.decode_token(request.headers.get('auth_token'))
-        if decoded["state"] == "Failure":
+        decoded = User.decode_token(token)
+        if isinstance(decoded, str):
             return User.decode_failure(decoded["error_message"])
 
         if User.check_login_status(decoded["user_id"]):
                 request_sql = "SELECT * FROM menu"
-                sql_data = (decoded["user_id"], )
+                sql_data = (decoded["user_id"])
+                print(sql_data)
                 return self.menu_handler.return_menu_items(request_sql, sql_data)
         return jsonify({"message": "Please login"}), 401
 
