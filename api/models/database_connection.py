@@ -49,7 +49,7 @@ class DatabaseAccess(object):
             """
             CREATE TABLE IF NOT EXISTS "menu" (
                     item_id SERIAL PRIMARY KEY, item_category VARCHAR(50) NOT NULL,
-                    item_name VARCHAR(50) NOT NULL, price NUMERIC NOT NULL
+                    item_name VARCHAR(50) NOT NULL, price INTEGER NOT NULL
                 )
             """,
             """
