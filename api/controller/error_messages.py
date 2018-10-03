@@ -9,12 +9,12 @@ class ErrorMessage(object):
     This class contains methods to that return error messages.
     """
 
-    def fields_missing_information(self, answer_data):
+    def fields_missing_information(self, request_data):
         """
         This method a response when some fields in the data sent are missing
         """
         return jsonify({"status": "failure",
-                        "status_code": 400, "data": answer_data,
+                        "status_code": 400, "data": request_data,
                         "error_message": "Some fields are empty"}), 400
 
     def request_missing_fields(self):
