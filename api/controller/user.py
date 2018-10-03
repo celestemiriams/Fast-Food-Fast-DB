@@ -5,8 +5,6 @@ import jwt
 import datetime
 from flask import jsonify
 from api.models.database_transaction import DbTransaction
-#from api.app import APP
-
 
 class User(object):
     """
@@ -29,7 +27,6 @@ class User(object):
         user_sql = "INSERT INTO users (username, email, phonenumber, password) VALUES\
         ('{}', '{}', {}, '{}');".format(self.username, self.email, self.phonenumber, self.password)
         DbTransaction.save(user_sql)
-
 
     def return_user_details(self):
         """
