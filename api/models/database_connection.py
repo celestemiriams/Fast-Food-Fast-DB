@@ -55,8 +55,9 @@ class DatabaseAccess(object):
             """
             CREATE TABLE IF NOT EXISTS "orders" (
                     order_id SERIAL PRIMARY KEY, user_id INTEGER NOT NULL,
-                    item_id INTEGER NOT NULL, 
+                    item_id INTEGER NOT NULL, date TIMESTAMP DEFAULT NOW(),
                     orderstatus VARCHAR(25) NOT NULL DEFAULT 'new',
+                    quantity INTEGER NOT NULL,
                     FOREIGN KEY (user_id) REFERENCES "users" (user_id)
                     ON UPDATE CASCADE ON DELETE CASCADE,
                     FOREIGN KEY (item_id) REFERENCES "menu" (item_id)
