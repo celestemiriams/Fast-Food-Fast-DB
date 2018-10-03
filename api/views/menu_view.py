@@ -38,17 +38,12 @@ class MenuViews(MethodView):
         Handles post requests
         """
         token = request.headers.get('Authorization')
-        #print(token)
         if not token:
             return jsonify({"message": "Token is missing"}), 401
-        #print(token)
         decoded = User.decode_token(token)
-        #print(decoded)
         if decoded["state"] == "Failure":
             return User.decode_failure(decoded["error_message"])
         if User.check_login_status(decoded["user_id"]):
-            # if item_id:
-            #     return self.menu_handler.post_menu_option(decoded["user_id"])
             if not request or not request.json:
                 return jsonify({"status_code": 400, "data": str(request.data),
                                 "error_message": "content not JSON"}), 400
