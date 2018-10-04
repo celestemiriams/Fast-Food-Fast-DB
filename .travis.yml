@@ -11,8 +11,6 @@ before_script:
   - psql -c 'create database fastfoodfast;' -U postgres
 script:
 - pytest --cov=.
-- coverage
-- coverage report
-- coveralls
+
 after_success:
 - coveralls
