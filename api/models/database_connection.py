@@ -9,17 +9,25 @@ class DatabaseAccess(object):
     """
     This class contains methods to create a database connection
     """
+
     @staticmethod
     def database_connection():
         """
         This method creates a connection to the database
         """
+        #from api.app import APP
 
+        #if not APP.config['TESTING']:
         connection = psycopg2.connect(
                 """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
                 password='lutwama@2' port='5432'"""
             )
         return connection
+
+        # connection = psycopg2.connect(
+        #     "dbname='testdb' user='celestemiriams' host='localhost' password='lutwama@2' port='5432'"
+        # )
+        # return connection
         
 
     
