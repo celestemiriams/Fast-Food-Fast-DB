@@ -52,7 +52,7 @@ class DbTransaction(object):
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
-            if connection is not None:
+            if connection is None:
                 connection.close()
 
     @staticmethod
@@ -94,9 +94,10 @@ class DbTransaction(object):
             updated_rows = cur.rowcount
             connection.commit()
             cur.close()
+            return updated_rows
         except (Exception, psycopg2.DatabaseError) as error:
             print(error)
         finally:
             if connection is not None:
                 connection.close()
-        return updated_rows
+        #return updated_rows
