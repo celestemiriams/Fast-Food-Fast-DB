@@ -99,12 +99,12 @@ class OrderHandler(object):
                     (order_id, ))
             
             if db_order_id:
-                    edit_sql = """UPDATE orders SET order_status = %s
+                    edit_sql = """UPDATE orders SET orderstatus = %s
                     WHERE order_id = %s"""
-                    edit_data = (request.json["order_status"], order_id)
+                    edit_data = (request.json["orderstatus"], order_id)
                     updated_rows = DbTransaction.edit(edit_sql, edit_data)
                     return jsonify({"status": "success",
-                                    "message": "order " + request.json["order_status"] + " successfully.\
+                                    "message": "order " + request.json["orderstatus"] + " successfully.\
                                     " + str(updated_rows) + " row(s) updated"}), 200
             return self.error_message.no_order_available(order_id)
         return jsonify({"Status": "failure", "message": "Content-type must be JSON"}), 400
