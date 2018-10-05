@@ -1,11 +1,1 @@
- */python?.?/*
-   */site-packages/nose/*
-   */__pycache__/*
-   *.pyc
-   */venv/*
-   */home/travis/virtualenv/*
-   */.pytest_cache/*
-   */renamed/*
-   */ignored/*
-   */.vscode/*
-   */tests/*
+  
