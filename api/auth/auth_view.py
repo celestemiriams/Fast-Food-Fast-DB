@@ -6,7 +6,7 @@ import re
 from flask import request, jsonify
 from flask.views import MethodView
 from werkzeug.security import generate_password_hash, check_password_hash
-from api.controller.user import User
+from api.models.user import User
 from api.models.database_transaction import DbTransaction
 
 
@@ -14,7 +14,7 @@ class RegisterUser(MethodView):
     """
     View function to register a user via the api
     """
-    
+
     def post(self):
         """
         Register a user, generate their token and add them to the database
@@ -30,7 +30,7 @@ class RegisterUser(MethodView):
 
         query = """SELECT * FROM "users" WHERE "email" = %s"""
         user_turple = DbTransaction.retrieve_one(query, (post_data['email'], ))
-        
+     
         if not user_turple:
             new_user = User(post_data['username'], post_data['email'],
                             post_data['phonenumber'], hashed_password)
