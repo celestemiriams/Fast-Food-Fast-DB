@@ -3,12 +3,13 @@ python:
 - "3.5.2"
 services:
 - postgresql
-sudo: false
+env:
+  - TRAVIS = True
 cache: pip3
 install:
 - pip install -r requirements.txt
 before_script:
-  - psql -c 'create database fastfoodfast;' -U postgres
+  - psql -c 'create database postgres;' -U postgres
 script:
 - pytest --cov=.
 after_success:
