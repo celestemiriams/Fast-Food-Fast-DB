@@ -34,7 +34,7 @@ class ProductionConfig(BaseConfig):
     """
     Production configurations
     """
-    # DATABASE_URL = "postgres://jgdwqdyywpxcin:fe12530756eceead021334d20dd0221d7eb4e32e2c5364b9cbbfee37dca28f20@ec2-184-72-247-70.compute-1.amazonaws.com:5432/daokvtekhjhl2s"
+    DATABASE_URL = "postgres://jgdwqdyywpxcin:fe12530756eceead021334d20dd0221d7eb4e32e2c5364b9cbbfee37dca28f20@ec2-184-72-247-70.compute-1.amazonaws.com:5432/daokvtekhjhl2s"
     DEBUG = False
 
 
