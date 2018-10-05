@@ -36,9 +36,8 @@ class DatabaseConfig:
     """
     HOST = "127.0.0.1"
     PORT = "5432"
-    DATABASE = "fast-food-fast"
+    DATABASE = "stackdb"
 
     SCHEMA_PRODUCTION = "public"
-    #SCHEMA_TESTING = "tests"
-    USER = "celestemiriams"
-    PASSWORD = "lutwama@2"
+    USER = "postgres"
+    PASSWORD = ""

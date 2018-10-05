@@ -18,7 +18,7 @@ class DbTransaction(object):
         This method handles insertion queries to the db
         """
         connection = psycopg2.connect(
-                """dbname='postgres' user='postgres' host='localhost'\
+                """dbname='stackdb' user='postgres' host='localhost'\
                 password='' port='5432'"""
             )
         try:
@@ -100,4 +100,4 @@ class DbTransaction(object):
         finally:
             if connection is not None:
                 connection.close()
-        #return updated_rows
+        

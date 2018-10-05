@@ -9,7 +9,7 @@ cache: pip3
 install:
 - pip install -r requirements.txt
 before_script:
-  - psql -c 'CREATE DATABASE IF NOT EXISTS postgres;' -U postgres
+  - psql -c 'CREATE DATABASE stackdb;' -U postgres
 script:
 - pytest --cov=.
 after_success:

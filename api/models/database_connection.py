@@ -19,7 +19,7 @@ class DatabaseAccess(object):
             connection = psycopg2.connect(os.getenv("DATABASE_URL"))
 
         connection = psycopg2.connect(
-                """dbname='postgres' user='postgres' host='localhost'\
+                """dbname='stackdb' user='postgres' host='localhost'\
                 password='' port='5432'"""
             )
         return connection
@@ -32,7 +32,7 @@ class DatabaseAccess(object):
         It connects to the database and creates tables one by one
         """
         connection = psycopg2.connect(
-                """dbname='postgres' user='postgres' host='localhost'\
+                """dbname='stackdb' user='postgres' host='localhost'\
                 password='' port='5432'"""
             )
         commands = (
@@ -81,7 +81,7 @@ class DatabaseAccess(object):
     @staticmethod
     def create_super_user():
         connection = psycopg2.connect(
-                """dbname='postgres' user='postgres' host='localhost'\
+                """dbname='stackdb' user='postgres' host='localhost'\
                 password='' port='5432'"""
             )
         cursor = connection.cursor()
