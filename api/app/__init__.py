@@ -4,10 +4,9 @@ This module sets up the flask emvironment
 
 from flask import Flask
 from api.views.handler import ErrorHandler
-from ..instance.config import EnvironmentConfig, DatabaseConfig, ServerConfig
 from api.routes import Urls
 from api.models.database_connection import DatabaseAccess
-
+from ..instance.config import EnvironmentConfig, DatabaseConfig, ServerConfig
 
 APP = Flask(__name__)
 APP.secret_key = 'SECRET_KEY'

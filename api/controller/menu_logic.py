@@ -64,5 +64,5 @@ class MenuHandler(object):
 
         menu = Menu(item_category, item_name, price)
         menu.save_menu()
-        return jsonify({"status_code": 201, "Menu": menu.get_menu_information(),
-                        "message": "Menu option added successfully"})
+        return jsonify({"Menu": menu.get_menu_information(),
+                        "message": "Menu option added successfully"}), 201

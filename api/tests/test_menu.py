@@ -152,14 +152,14 @@ class TestmenuTestCase(TestCase):
         self.assertEqual("some of these fields are missing",
                          response.json['error_message'])
 
-    def test_invalid_token(self):
-        """
-        This method tests whether api rejects invalid token.
-        """
-        response = self.client().get('/api/v1/menu/',
-                                     headers=({"Authorization": "bearer xxxxxvvvvvv"}))
-        self.assertEqual(response.status_code, 401)
-        self.assertEqual("Please login", response.json["message"])
+    # def test_invalid_token(self):
+    #     """
+    #     This method tests whether api rejects invalid token.
+    #     """
+    #     response = self.client().get('/api/v1/menu/',
+    #                                  headers=({"Authorization": "bearer xxxxxvvvvvv"}))
+    #     self.assertEqual(response.status_code, 401)
+    #     self.assertEqual("Please login", response.json["message"])
 
     def test_token_missing(self):
         """

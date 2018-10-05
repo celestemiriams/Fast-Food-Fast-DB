@@ -39,7 +39,7 @@ class MenuViews(MethodView):
         """
         token = request.headers.get('Authorization')
         if not token:
-            return jsonify({"message": "Token is missing"})
+            return jsonify({"message": "Token is missing"}), 401
         decoded = User.decode_token(token)
         if decoded["state"] == "Failure":
             return User.decode_failure(decoded["error_message"])
