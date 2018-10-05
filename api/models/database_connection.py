@@ -15,23 +15,15 @@ class DatabaseAccess(object):
         """
         This method creates a connection to the database
         """
-        #from api.app import APP
-
-        #if not APP.config['TESTING']:
         if(os.getenv("FLASK_ENV")) == "production":
             connection = psycopg2.connect(os.getenv("DATABASE_URL"))
 
         connection = psycopg2.connect(
-                """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
-                password='lutwama@2' port='5432'"""
+                """dbname='postgres' user='postgres' host='localhost'\
+                password='' port='5432'"""
             )
         return connection
 
-        # connection = psycopg2.connect(
-        #     "dbname='testdb' user='celestemiriams' host='localhost' password='lutwama@2' port='5432'"
-        # )
-        # return connection
-        
    
     @staticmethod
     def create_tables():
@@ -40,8 +32,8 @@ class DatabaseAccess(object):
         It connects to the database and creates tables one by one
         """
         connection = psycopg2.connect(
-                """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
-                password='lutwama@2' port='5432'"""
+                """dbname='postgres' user='postgres' host='localhost'\
+                password='' port='5432'"""
             )
         commands = (
             # """DROP TABLE IF EXISTS users CASCADE """,
@@ -89,8 +81,8 @@ class DatabaseAccess(object):
     @staticmethod
     def create_super_user():
         connection = psycopg2.connect(
-                """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
-                password='lutwama@2' port='5432'"""
+                """dbname='postgres' user='postgres' host='localhost'\
+                password='' port='5432'"""
             )
         cursor = connection.cursor()
         """inserting data"""

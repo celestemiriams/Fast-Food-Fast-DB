@@ -16,8 +16,6 @@ class TestorderTestCase(TestCase):
     Tests run for the api end pints.
     """
 
-    date_time = datetime.now()
-
     user_test = User(12, "joyce", "joyce@gmail.com", "0771462657", "joyce@2")
     user_1 = User(123, "miriam", "miriam@gmail.com", "0702488995", "miriam@2")
     user_2 = User(235, "Vicky", "vic@vom.com", "0777897654", "vicky@1")

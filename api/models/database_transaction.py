@@ -18,8 +18,8 @@ class DbTransaction(object):
         This method handles insertion queries to the db
         """
         connection = psycopg2.connect(
-                """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
-                password='lutwama@2' port='5432'"""
+                """dbname='postgres' user='postgres' host='localhost'\
+                password='' port='5432'"""
             )
         try:
             
