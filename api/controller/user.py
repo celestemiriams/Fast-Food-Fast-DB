@@ -40,11 +40,13 @@ class User(object):
             "phonenumber": self.phonenumber 
         }
 
-    @staticmethod
-    def get_user_by_id(user_id):
-        user_id_sql = "SELECT * FROM users WHERE user_id = %s AND usertype = True"
-        userid = DbTransaction.retrieve_one(user_id_sql, user_id)
-        return userid
+    # @staticmethod
+    # def get_user_by_id(user_id):
+    #     user_id_sql = "SELECT * FROM users WHERE user_id = %s AND usertype = True"
+    #     userid = DbTransaction.retrieve_one(user_id_sql, user_id)
+    #     return userid
+
+    
 
     @staticmethod
     def encode_token(user_id):
