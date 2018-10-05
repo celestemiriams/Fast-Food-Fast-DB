@@ -20,6 +20,26 @@ class ServerConfig(JSONSerializable):
     """
 
     SECRET_KEY = 'my-food-service-delivery-application'
+    #DATABASE_URI = ""
+
+# class DevelopmentConfig(ServerConfig):
+#     """Configurations for Development."""
+#     DEBUG = True
+
+# class TestingConfig(ServerConfig):
+#     """ Configurations for testing"""
+#     TESTING = True
+#     DEBUG = True
+#     DATABASE_URI = ""
+
+# class ProductionConfig(ServerConfig):
+#     """Configurations for Production."""
+#     DEBUG = False
+#     TESTING = False
+
+# class StagingConfig(ServerConfig):
+#     """Configurations for Staging."""
+#     DEBUG = True
 
 
 class EnvironmentConfig(ServerConfig):
@@ -31,6 +51,13 @@ class EnvironmentConfig(ServerConfig):
     DEBUG = True
     TESTING = False
     ENV = "development"
+
+# app_config = {
+#     'development': DevelopmentConfig,
+#     'testing': TestingConfig,
+#     'staging': StagingConfig,
+#     'production': ProductionConfig,
+# }
 
 
 class DatabaseConfig:
