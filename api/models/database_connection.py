@@ -15,15 +15,15 @@ class DatabaseAccess(object):
         """
         This method creates a connection to the database
         """
-        #from api.app import APP
 
-        #if not APP.config['TESTING']:
-        # if(os.getenv("FLASK_ENV")) == "production":
-        #     connection = psycopg2.connect(os.getenv("DATABASE_URL"))
-        connection = psycopg2.connect(
-                """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
-                password='lutwama@2' port='5432'"""
-            )
+        if(os.getenv("FLASK_ENV")) == "production":
+            connection = psycopg2.connect(os.getenv("DATABASE_URL"))
+        elif(app.config['TESTING']):
+            connection = psycopg2.connect
+            ('postgresql://postgres:lutwama@2@localhost:5432/postgres')
+        else:
+            connection = psycopg2.connect
+            ('postgresql://celestemiriams:lutwama@2@localhost:5432/fast-food-fast')
         return connection
 
         # connection = psycopg2.connect(

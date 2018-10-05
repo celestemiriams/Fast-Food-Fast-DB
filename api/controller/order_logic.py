@@ -3,9 +3,9 @@ This module handles specific requests made
 on the API end points
 """
 from flask import jsonify, request
-from api.controller.order import Order
+from api.models.order import Order
 from api.models.database_transaction import DbTransaction
-from api.controller.error_messages import ErrorMessage
+from api.views.error_messages import ErrorMessage
 
 
 class OrderHandler(object):

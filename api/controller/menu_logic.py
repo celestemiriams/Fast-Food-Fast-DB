@@ -3,9 +3,9 @@ This module handles specific requests made
 on the API end points
 """
 from flask import jsonify, request
-from api.controller.menu import Menu
+from api.models.menu import Menu
 from api.models.database_transaction import DbTransaction
-from api.controller.error_messages import ErrorMessage
+from api.views.error_messages import ErrorMessage
 
 
 class MenuHandler(object):
