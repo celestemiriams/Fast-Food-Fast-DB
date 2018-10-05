@@ -46,7 +46,7 @@ class MenuViews(MethodView):
         if User.check_login_status(decoded["user_id"]):
             userId = decoded["user_id"]
             is_admin = User.get_user_by_id(userId)
-            if decoded and is_admin:
+            if is_admin:
                 if not request or not request.json:
                     return jsonify({"status_code": 400, "data": str(request.data),
                                     "error_message": "content not JSON"}), 400

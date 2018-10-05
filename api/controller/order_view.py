@@ -71,7 +71,7 @@ class OrderViews(MethodView):
         if User.check_login_status(decoded["user_id"]):
             userId = decoded["user_id"]
             is_admin = User.get_user_by_id(userId)
-            if decoded and is_admin:
+            if is_admin:
                 return self.order_handler.update_order_status(order_id)
             return jsonify({"message": "Not admin"})
         return jsonify({"message": "Please login"}), 401

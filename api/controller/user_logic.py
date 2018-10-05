@@ -30,12 +30,13 @@ class UserHandler(object):
         _order_ = []
         for order_ in order_list:
                 order_dict = {
-                "username": order_[0],
-                "user_id": order_[1],
+                "user_id": order_[0],
+                "username": order_[1],
                 "item_id": order_[2],
                 "date": order_[3],
                 "order_status": order_[4],
                 "quantity": order_[5]
+                
                 }
                 _order_.append(order_dict)
         return jsonify({"message": "Your orders",
