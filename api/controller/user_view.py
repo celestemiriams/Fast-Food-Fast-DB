@@ -26,7 +26,7 @@ class UserViews(MethodView):
             if isinstance(decoded, str):
                 return User.decode_failure(decoded["error_message"])
 
-            if User.check_login_status(decoded["user_id"]):
+            if "user_id" in decoded and  User.check_login_status(decoded["user_id"]):
                 user_sql = """SELECT "users".username, orders.* FROM "orders" LEFT JOIN "users"\
                                 ON(orders.user_id = "users".user_id) WHERE "orders".user_id = %s """
                 sql_data = (decoded["user_id"], )

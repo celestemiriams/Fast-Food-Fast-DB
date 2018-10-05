@@ -26,7 +26,7 @@ class MenuViews(MethodView):
         if isinstance(decoded, str):
             return User.decode_failure(decoded["error_message"])
 
-        if User.check_login_status(decoded["user_id"]):
+        if "user_id" in decoded and User.check_login_status(decoded["user_id"]):
                 request_sql = "SELECT * FROM menu"
                 sql_data = (decoded["user_id"])
                 print(sql_data)
@@ -44,9 +44,13 @@ class MenuViews(MethodView):
         if decoded["state"] == "Failure":
             return User.decode_failure(decoded["error_message"])
         if User.check_login_status(decoded["user_id"]):
-            if not request or not request.json:
-                return jsonify({"status_code": 400, "data": str(request.data),
-                                "error_message": "content not JSON"}), 400
-            return self.menu_handler.post_menu_option(decoded["user_id"])
+            userId = decoded["user_id"]
+            is_admin = User.get_user_by_id(userId)
+            if decoded and is_admin:
+                if not request or not request.json:
+                    return jsonify({"status_code": 400, "data": str(request.data),
+                                    "error_message": "content not JSON"}), 400
+                return self.menu_handler.post_menu_option(decoded["user_id"])
+            return jsonify({"message": "Not admin"})
         return jsonify({"message": "Please login"}), 401
 
