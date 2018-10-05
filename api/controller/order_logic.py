@@ -70,24 +70,27 @@ class OrderHandler(object):
         """
         This method allows a user to place an order
         """
-        keys = ("user_id", "item_id","quantity")
+        keys = ("item_id","quantity")
         if not set(keys).issubset(set(request.json)):
             return self.error_message.request_missing_fields()
 
         request_condition = [
-            request.json["user_id"],
             request.json["item_id"],
             request.json["quantity"]
             ]
 
         if not all(request_condition):
             return self.error_message.fields_missing_information(request.json)
-
-        user_id = request.json['user_id']
+        user = DbTransaction.retrieve_one(
+            """SELECT user_id FROM users WHERE user_id = %s""",
+            (user_id, ))
+        user_string = user[0]
+        if user_string is None:
+            return jsonify({"message": "user doesnot exist"})
         item_id = request.json['item_id']
         quantity = request.json['quantity']
     
-        order = Order(user_id, item_id, quantity)
+        order = Order(user_string, item_id, quantity)
         order.save_order()
         return jsonify({"status_code": 201, "Order": order.get_order_information(),
                         "message": "order successfully placed"}), 201
