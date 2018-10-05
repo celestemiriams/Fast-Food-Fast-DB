@@ -6,8 +6,8 @@ import uuid
 from unittest import TestCase
 from flask import json
 import psycopg2
-from api.controller.user import User
-from api.app import APP
+from api.models.user import User
+from api.app import create_app
 from api.models.database_connection import DatabaseAccess
 
 
@@ -21,8 +21,8 @@ class TestUserAuthTestCase(TestCase):
         """
         Define test variables and initialize app.
         """
-        APP.config['TESTING'] = True
-        self.app = APP
+        config_name = 'testing'
+        self.app = create_app(config_name)
         self.client = self.app.test_client
         DatabaseAccess.create_tables()
 
@@ -30,9 +30,9 @@ class TestUserAuthTestCase(TestCase):
         """
         This method tests configuration variables such that they are set correctly
         """
-        self.assertNotEqual(APP.config['SECRET_KEY'], "my-food-delivery-service-app")
-        self.assertFalse(APP.config['DEBUG'] is True)
-        self.assertTrue(APP.config['TESTING'] is True)
+        self.assertNotEqual(self.app.config['SECRET_KEY'], "my-food-delivery-service-app")
+        self.assertFalse(self.app.config['DEBUG'] is True)
+        self.assertTrue(self.app.config['TESTING'] is True)
 
     def test_user_registration(self):
         """
