@@ -18,6 +18,8 @@ class DatabaseAccess(object):
         #from api.app import APP
 
         #if not APP.config['TESTING']:
+        # if(os.getenv("FLASK_ENV")) == "production":
+        #     connection = psycopg2.connect(os.getenv("DATABASE_URL"))
         connection = psycopg2.connect(
                 """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
                 password='lutwama@2' port='5432'"""
@@ -29,8 +31,7 @@ class DatabaseAccess(object):
         # )
         # return connection
         
-
-    
+   
     @staticmethod
     def create_tables():
         """
