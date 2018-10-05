@@ -1,9 +1,9 @@
 """
 This module handles requests to urls.
 """
-from api.views.menu_view import MenuViews
-from api.views.order_view import OrderViews
-from api.views.user_view import UserViews
+from api.controller.menu_view import MenuViews
+from api.controller.order_view import OrderViews
+from api.controller.user_view import UserViews
 from api.auth.auth_view import RegisterUser, LoginUser, Logout
 
 
