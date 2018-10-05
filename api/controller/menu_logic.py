@@ -58,10 +58,6 @@ class MenuHandler(object):
         if not all(request_condition):
             return self.error_message.fields_missing_information(request.json)
 
-        # user = DbTransaction.retrieve_one(
-        #     """SELECT "user_id" FROM "users" WHERE "user_id" = %s""",
-        #     (user_id, ))
-
         item_category = request.json['item_category']
         item_name = request.json['item_name']
         price = request.json['price']
@@ -69,5 +65,4 @@ class MenuHandler(object):
         menu = Menu(item_category, item_name, price)
         menu.save_menu()
         return jsonify({"status_code": 201, "Menu": menu.get_menu_information(),
-                        "message": "Menu option added successfully"}), 201
-
+                        "message": "Menu option added successfully"})

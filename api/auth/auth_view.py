@@ -151,7 +151,7 @@ class Logout(MethodView):
         """This method logs out a user"""
         token = request.headers.get('auth_token')
         if not token:
-            return jsonify({"message": "Token is missing"}), 401
+            return jsonify({"message": "Token is missing"})
 
         decoded = User.decode_token(request.headers.get('auth_token'))
         if decoded["state"] == "Failure":

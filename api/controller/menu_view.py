@@ -31,7 +31,7 @@ class MenuViews(MethodView):
                 sql_data = (decoded["user_id"])
                 print(sql_data)
                 return self.menu_handler.return_menu_items(request_sql, sql_data)
-        return jsonify({"message": "Please login"}), 401
+        return jsonify({"message": "Please login"})
 
     def post(self):
         """"
@@ -39,7 +39,7 @@ class MenuViews(MethodView):
         """
         token = request.headers.get('Authorization')
         if not token:
-            return jsonify({"message": "Token is missing"}), 401
+            return jsonify({"message": "Token is missing"})
         decoded = User.decode_token(token)
         if decoded["state"] == "Failure":
             return User.decode_failure(decoded["error_message"])

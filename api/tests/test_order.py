@@ -111,25 +111,6 @@ class TestorderTestCase(TestCase):
         self.assertIsInstance(response.json['Order'], list)
         self.assertIn("Your orders", response.json["message"])
 
-    # def test_get_a_specific_order(self):
-    #     """
-    #     Test an order is returned on a get request.
-    #     (GET request)
-    #     """
-    #     response = self.client().post('/api/v1/users/orders/', data=json.dumps(
-    #         self.order3.__dict__), content_type='application/json',
-    #                                   headers=self.user1_auth_header)
-        
-    #     print(response.json["Order"]["item_id"])
-    #     response = self.client().get('/api/v1/orders/5/',
-    #                                  headers=self.auth_header)
-    #     print(response.data)
-    #     self.assertEqual(response.status_code, 200)
-    #     self.assertIn("Order", response.json)
-    #     self.assertIn("result retrieved successfully", response.json["message"])
-    #     self.assertIsInstance(response.json['Order'], dict)
-    #     self.assertEqual(len(response.json['Order']), 8)
-
     def test_order_not_found(self):
         """
         Test API returns nothing when an order is not found
