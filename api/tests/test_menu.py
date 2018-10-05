@@ -5,7 +5,7 @@ from unittest import TestCase
 from datetime import datetime
 from flask import json
 import psycopg2
-from api.app import APP
+from api.app import create_app
 from api.models.user import User
 from api.models.menu import Menu
 from api.models.database_connection import DatabaseAccess
@@ -29,8 +29,8 @@ class TestorderTestCase(TestCase):
 
     def setUp(self):
         """Define test variables and initialize app."""
-        APP.config['TESTING'] = True
-        self.app = APP
+        config_name = 'testing'
+        self.app = create_app(config_name)
         self.client = self.app.test_client
         DatabaseAccess.create_tables()
         self.client().post('/api/v1/auth/signup/', data=json.dumps(
