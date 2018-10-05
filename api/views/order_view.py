@@ -27,15 +27,15 @@ class OrderViews(MethodView):
             return User.decode_failure(decoded["error_message"])
 
         if User.check_login_status(decoded["user_id"]):
-            userId = decoded["user_id"]
-            is_admin = User.get_user_by_id(userId)
-            if decoded and is_admin:
+            # userId = decoded["user_id"]
+            # is_admin = User.get_user_by_id(userId)
+            # if decoded and is_admin:
                 if not order_id:
                     request_sql = "SELECT * FROM orders"
                     sql_data = (decoded["user_id"])
                     return self.order_handler.return_all_orders(request_sql, sql_data)
                 return self.order_handler.return_single_order(order_id)
-            return jsonify({"message": "Not admin"})
+            #return jsonify({"message": "Not admin"})
             
         return jsonify({"message": "Please login"}), 401
 
