@@ -4,7 +4,7 @@ This module handles the database set up
 import os
 import psycopg2
 from flask import current_app as app
-
+from werkzeug.security import generate_password_hash
 class DatabaseAccess(object):
     """
     This class contains methods to create a database connection
@@ -15,15 +15,16 @@ class DatabaseAccess(object):
         """
         This method creates a connection to the database
         """
+        #from api.app import APP
 
+        #if not APP.config['TESTING']:
         if(os.getenv("FLASK_ENV")) == "production":
             connection = psycopg2.connect(os.getenv("DATABASE_URL"))
-        elif(app.config['TESTING']):
-            connection = psycopg2.connect
-            ('postgresql://postgres:lutwama@2@localhost:5432/postgres')
-        else:
-            connection = psycopg2.connect
-            ('postgresql://celestemiriams:lutwama@2@localhost:5432/fast-food-fast')
+
+        connection = psycopg2.connect(
+                """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
+                password='lutwama@2' port='5432'"""
+            )
         return connection
 
         # connection = psycopg2.connect(
@@ -85,7 +86,22 @@ class DatabaseAccess(object):
             if connection is not None:
                connection.close()
 
+    @staticmethod
+    def create_super_user():
+        connection = psycopg2.connect(
+                """dbname='fast-food-fast' user='celestemiriams' host='localhost'\
+                password='lutwama@2' port='5432'"""
+            )
+        cursor = connection.cursor()
+        """inserting data"""
+        user_query = "INSERT INTO users (username, email, phonenumber, usertype, password) VALUES\
+         ('{}', '{}', '{}',{}, '{}');".format("admin", "admin1@gmail.com", "0702345678", True, generate_password_hash("admin@add", method='sha256'))
+        try:
+            cursor.execute(user_query)
+            connection.commit()
+            connection.close()
+        except Exception:
+            return 
+
 db = DatabaseAccess()
 db.create_tables()
-
-        
