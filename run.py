@@ -2,13 +2,6 @@
 This module runs the application
 """
 
-import os
-
-from api.app import create_app
-
-config_name = "development"
-
-app = create_app(config_name)
-
+from api.app import APP
 if __name__ == '__main__':
-    app.run()
+    APP.run()
