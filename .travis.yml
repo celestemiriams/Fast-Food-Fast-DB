@@ -9,7 +9,7 @@ cache: pip3
 install:
 - pip install -r requirements.txt
 before_script:
-  - psql -c 'create database fast-food-fast;' -U postgres
+  - psql -c 'create database fastfoodfast;' -U postgres
 script:
 - pytest --cov=.
 after_success:
